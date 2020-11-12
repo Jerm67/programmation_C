@@ -1,0 +1,6 @@
+#fichier gitignore programme C
+
+
+
+*.exe
+*o
