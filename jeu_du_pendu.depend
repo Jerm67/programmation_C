@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1605715445 source:d:\projet_codeblocks\programmation_c_cycle1_f2\programmation_c\exercices\jeu du pendu\jeu_du_pendu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
