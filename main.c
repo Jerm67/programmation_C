@@ -6,68 +6,83 @@
 /* FEATURE
 -Afficher le mot caché
 -Vérification de la lettre proposé par l'utilisateur
--
-
 */
 
-void initmotsecret (char motsecret[]);
-void cachemotsecret (char motsecret []);
-void saisilettre (char lettre []);
-
-int main()
-{
+void initmotsecret ();
+void cachemotsecret ();
+void saisilettre (char *lettre, char *lettre2);
+void checklettre (char lettre, char lettre2);
 
     char motsecret [20];
 
-    char lettre [20];
+    char tabmodif [20];
+
+int main()
+{
+    char lettre;
+
+    char lettre2;
 
     printf ("Bienvenue dans le pendu ! \n");
 
-    initmotsecret(motsecret);
+    initmotsecret();
 
-    //cachemotsecret(motsecret);
+    cachemotsecret();
 
-     saisilettre (lettre);
+     saisilettre (&lettre, &lettre2);
+
+    checklettre (lettre, lettre2);
 
 
     return 0;
 }
 
-void initmotsecret(char motsecret[] ){
+void initmotsecret(){
 
-    strcpy (motsecret, "VOITURE");
-    printf ("%s\n", motsecret);
-
+    strcpy (motsecret, "VOITURE\n");
 }
 
-void cachemotsecret (char motsecret []){
-    strcpy (motsecret, "******* \n");
-    printf ("%s", motsecret);
+void cachemotsecret (){
+    strcpy (tabmodif, "******* \n");
 }
 
 
 
-void saisilettre (char lettre []){
-
-
+void saisilettre (char *lettre, char *lettre2){
 
         printf ("Saisir un charactere \n");
-        scanf  ("%s", lettre);
+        *lettre = getchar();
+        *lettre2 = getchar();
 
 
-         if (lettre = initmotsecret)
+        /* if (lettre = (motsecret))
          {
-
-            printf ("Bonne lettre");
-            scanf  ("%s", lettre);
+            printf("%s", tabmodif);
          }
           else
          {
 
-            printf ("Mauvaise lettre");
+            printf ("Mauvaise lettre\n");
             scanf  ("%s", lettre);
-         }
-
+         }*/
 }
 
+void checklettre (char lettre, char lettre2){
+
+       for (int i=0; i<strlen(motsecret); i++){
+        if(motsecret[i] == lettre){
+                tabmodif [i] = lettre;
+                printf("Bonne lettre\n");
+        }
+         }
+         printf ("%s", tabmodif);
+
+          for (int i=0; i<strlen(motsecret); i++){
+        if(motsecret[i] == lettre2){
+                tabmodif [i] = lettre2;
+                printf("Bonne lettre\n");
+        }
+         }
+         printf ("%s", tabmodif);
+}
 
