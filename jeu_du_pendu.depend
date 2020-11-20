@@ -1,5 +1,10 @@
 # depslib dependency file v1.0
-1605803471 source:d:\projet_codeblocks\programmation_c_cycle1_f2\programmation_c\exercices\jeu du pendu\jeu_du_pendu\main.c
+1605882037 source:d:\projet_codeblocks\programmation_c_cycle1_f2\programmation_c\exercices\jeu du pendu\jeu_du_pendu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
+1605885194 source:d:\projet_codeblocks\programmation_c_cycle1_f2\programmation_c\exercices\jeu du pendu\jeu_du_pendu\git_pendu_var_locales\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

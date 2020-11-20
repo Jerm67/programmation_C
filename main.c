@@ -1,58 +1,80 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
+//#define VIE 9
 
 /* FEATURE
 -Afficher le mot caché
 -Vérification de la lettre proposé par l'utilisateur
 */
 
-void initmotsecret ();
-void cachemotsecret ();
-void saisilettre (char *lettre, char *lettre2);
-void checklettre (char lettre, char lettre2);
+void initmotsecret (char motsecret [];);
+void cachemotsecret (char tabmodif [];);
+void saisilettre (char *lettre);
+int wronglettre (char lettre, char motsecret[], char tabmodif[]);
+int checklettre (char lettre, char motsecret[], char tabmodif[] );
+
+
+
+int main()
+{
+    char *lettre;
 
     char motsecret [20];
 
     char tabmodif [20];
 
-int main()
-{
-    char lettre;
+    int VIE = 9;
 
-    char lettre2;
+    int check;
 
     printf ("Bienvenue dans le pendu ! \n");
 
-    initmotsecret();
+    initmotsecret(motsecret);
 
-    cachemotsecret();
+    cachemotsecret(tabmodif);
 
-     saisilettre (&lettre, &lettre2);
+    do{
+    fflush(stdin);
 
-    checklettre (lettre, lettre2);
+    saisilettre (&lettre);
+
+    check = checklettre (lettre, motsecret, tabmodif);
+
+    if (check == 0){
+        VIE --;
+        printf("Il vous reste :%d\n", VIE);
+        }
+    }while(VIE > 0);
+    if(VIE == 0){
+        printf ("ET C'EST LOOSE ! \n");
+    }
+    /*for (tabmodif){
+        if{
+            tabmodif = motsecret;
+            printf("ET C'EST LA WIN");
+        }
+    }*/
 
 
     return 0;
 }
 
-void initmotsecret(){
-
+void initmotsecret( char motsecret []){
     strcpy (motsecret, "VOITURE\n");
 }
 
-void cachemotsecret (){
-    strcpy (tabmodif, "******* \n");
+void cachemotsecret (char tabmodif []){
+    strcpy (tabmodif, "*******\n");
+    printf ("%s",tabmodif);
 }
 
 
 
-void saisilettre (char *lettre, char *lettre2){
+void saisilettre (char *lettre){
 
         printf ("Saisir un charactere \n");
         *lettre = getchar();
-        *lettre2 = getchar();
 
 
         /* if (lettre = (motsecret))
@@ -67,22 +89,43 @@ void saisilettre (char *lettre, char *lettre2){
          }*/
 }
 
-void checklettre (char lettre, char lettre2){
+int checklettre (char lettre, char motsecret[], char tabmodif[]){
+
+       int checked = 0;
+
 
        for (int i=0; i<strlen(motsecret); i++){
+
         if(motsecret[i] == lettre){
+
                 tabmodif [i] = lettre;
                 printf("Bonne lettre\n");
+
+                checked = 1;
         }
+
          }
          printf ("%s", tabmodif);
 
-          for (int i=0; i<strlen(motsecret); i++){
+         return checked;
+
+
+
+          /*for (int i=0; i<strlen(motsecret); i++){
         if(motsecret[i] == lettre2){
                 tabmodif [i] = lettre2;
                 printf("Bonne lettre\n");
         }
          }
-         printf ("%s", tabmodif);
+         printf ("%s", tabmodif);*/
 }
+
+/*int wronglettre (char lettre, char motsecret[], char tabmodif[]){
+
+    for (int i=0; i<strlen(motsecret); i++){
+        if(motsecret[i] != lettre){
+            return 0;
+        }
+    }
+}*/
 
