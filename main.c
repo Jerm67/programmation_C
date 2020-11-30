@@ -1,88 +1,105 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-
+#define CDEPART 0
+#define CFIN 66
+#define DMIN 2
+#define DMAX 12
+#define CMORT 58
+#define CMULTIPLE 9
+#define EXCEPTION 63
 
 /* FEATURE
--Afficher le mot caché
--Vérification de la lettre proposé par l'utilisateur
+-Initialiser la position de la case de départ
+-Lancer de dés
+-Verification du jet de dés
+-Si le jet de dés et bon on se déplace
+-Vérification des cases
+-Vérification du dépassement de la case 66
+-Condition de victoire FIN
 */
 
-void initmotsecret ();
-void cachemotsecret ();
-void saisilettre (char *lettre, char *lettre2);
-void checklettre (char lettre, char lettre2);
-
-    char motsecret [20];
-
-    char tabmodif [20];
+int init ();
+int jetdedes ();
+int verifdes(int, int);
+int deplacement(int, int, int);
+int Cond_Victoire(int);
 
 int main()
 {
-    char lettre;
+    int des1 = 0;
+    int des2 = 0;
+    int place = init();
 
-    char lettre2;
+    do{
+         des1 = jetdedes();
+        des2 = jetdedes();
+        if(verifdes(des1, des2)){
+            place += des1+des2;
+            printf
+            place = deplacement (place, des1, des2);
+        }
 
-    printf ("Bienvenue dans le pendu ! \n");
-
-    initmotsecret();
-
-    cachemotsecret();
-
-     saisilettre (&lettre, &lettre2);
-
-    checklettre (lettre, lettre2);
-
+    }
+    (Cond_Victoire(66))
+        {
+         printf("OK!\n");
+        }
 
     return 0;
 }
 
-void initmotsecret(){
+int init (){
 
-    strcpy (motsecret, "VOITURE\n");
+   return CDEPART;
+
 }
 
-void cachemotsecret (){
-    strcpy (tabmodif, "******* \n");
+int jetdedes (){
+    int jet;
+    printf ("Entrez un entier entre 2 et 12 :");
+    scanf ("%d",&jet);
+    return jet;
 }
 
-
-
-void saisilettre (char *lettre, char *lettre2){
-
-        printf ("Saisir un charactere \n");
-        *lettre = getchar();
-        *lettre2 = getchar();
-
-
-        /* if (lettre = (motsecret))
-         {
-            printf("%s", tabmodif);
-         }
-          else
-         {
-
-            printf ("Mauvaise lettre\n");
-            scanf  ("%s", lettre);
-         }*/
+int verifdes(int jet1, int jet2)
+{
+    if ((jet1+jet2)>=DMIN && (jet1+jet2)<=DMAX)
+    {
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
-void checklettre (char lettre, char lettre2){
-
-       for (int i=0; i<strlen(motsecret); i++){
-        if(motsecret[i] == lettre){
-                tabmodif [i] = lettre;
-                printf("Bonne lettre\n");
-        }
-         }
-         printf ("%s", tabmodif);
-
-          for (int i=0; i<strlen(motsecret); i++){
-        if(motsecret[i] == lettre2){
-                tabmodif [i] = lettre2;
-                printf("Bonne lettre\n");
-        }
-         }
-         printf ("%s", tabmodif);
+int deplacement( int place, int jet1, int jet2)
+{
+    if (place%CMULTIPLE ==0 && place<EXCEPTION)
+    {
+        place += jet1+jet2;
+    }
+    if (place > CFIN)
+    {
+        place = CFIN - (place - CFIN);
+    }
+    if (place == CMORT)
+    {
+        place = CDEPART;
+    }
+    return place;
 }
+
+int Cond_Victoire(int place)
+{
+    if (place == CFIN )
+    {
+        printf("Bravo ! Vous avez gagne !\n");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
+}
+
 
