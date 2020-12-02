@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1606916720 source:d:\projet_codeblocks\programmation_c_cycle1_f2\programmation_c\exercices\jeu du pendu\bataille_navale\bataille_navale\main.c
+	<stdio.h>
+	<stdlib.h>
+
