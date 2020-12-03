@@ -1,29 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAILLE 11
 
+//Les pointeurs sur les fonctions
+
+//Les prototypes
+void affiche (int n_val);
+//void affiche2 (double n_val);
+int retourne (int n_Entier1, int n_Entier2);
+
+//Pointeur de fonction
+void (*pAffiche)(int);he
+void (*pAffiche2)(double);
+//void (*pAffiche2)(void*); //ce pointeur fonctionne pour tout les cas
+int (*pRetourne)(int, int);
 
 
 int main()
 {
-    /*Initialisation et affichage du tableau*/
-    int MatriceEntiers2[TAILLE][TAILLE];//={1,2,3,4,5,6,7,8,9,10,11};
-    int i, j = 0;
+    //affiche (12);
+    pAffiche=&affiche;
+    //pAffiche2=&affiche2;
 
-    for(i=0;i<TAILLE;i++)
-        {//ligne
-        for(j=0;j<TAILLE;j++)
-        {//colonne
-            MatriceEntiers2[i][j]=1;
-        if (MatriceEntiers2[i][j]==1){
-        printf("X");
-        }
-        if(MatriceEntiers2[i][TAILLE-1]==1){
-        printf("X\n"); //Quand i arrive à 11 on fait -1 et un saut de ligne
-        }
-    }
-}
+    pAffiche(12);
+
+    printf ("\n");
+
+    /*appel du pointeur pour l'addition dans le programme principale*/
+    pRetourne=&retourne;
+    pRetourne(5, 5);
 
     return 0;
 }
 
+
+void affiche (int n_val){
+
+    printf("%d\n", n_val);
+}
+
+int retourne (int n_Entier1, int n_Entier2){
+
+    printf ("%d\n", n_Entier1 + n_Entier2);
+}
