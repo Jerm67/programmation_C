@@ -1,29 +1,23 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define TAILLE 11
+#include "define.h"
 
 
+
+
+//variables globales
+    int MatriceEntiers2[TAILLE][TAILLE];//={1,2,3,4,5,6,7,8,9,10,11}; //Mon tableau 2d
+    int MatriceEntiers3 [TAILLE][TAILLE];
+    int i=0, j=0, nbx=0, nby =1;
 
 int main()
 {
-    /*Initialisation et affichage du tableau*/
-    int MatriceEntiers2[TAILLE][TAILLE];//={1,2,3,4,5,6,7,8,9,10,11};
-    int i, j = 0;
+    char mon_char;
 
-    for(i=0;i<TAILLE;i++)
-        {//ligne
-        for(j=0;j<TAILLE;j++)
-        {//colonne
-            MatriceEntiers2[i][j]=1;
-        if (MatriceEntiers2[i][j]==1){
-        printf("X");
-        }
-        if(MatriceEntiers2[i][TAILLE-1]==1){
-        printf("X\n"); //Quand i arrive à 11 on fait -1 et un saut de ligne
-        }
-    }
+    debut_partie(MatriceEntiers2, mon_char);
+    affiche_Tab(MatriceEntiers2, MatriceEntiers3, i, j, nbx, nby, mon_char);
+    plac_Bateau (MatriceEntiers2);
+
 }
 
-    return 0;
-}
+
+
 
